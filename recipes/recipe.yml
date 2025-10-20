@@ -28,13 +28,16 @@ modules:
         - alsa-utils
         - blueman
         - cosmic-desktop
+        - distrobox
         - gvfs
         - gvfs-mtp
         - iwl*
         - kitty
         - nautilus
-        - neovim
         - pavucontrol
+        - podman
+        - podman-compose
+        - podman-docker
         - starship
         - tuned
         - tuned-ppd
@@ -46,16 +49,46 @@ modules:
 
   - type: default-flatpaks
     configurations:
-      - notify: true # Send notification after install/uninstall is finished (true/false)
+      - notify: false
         scope: system
-        # If no repo information is specified, Flathub will be used by default
-        install: # system flatpaks we want all users to have and not remove
-          - org.mozilla.firefox
+        install:
+          - com.github.rafostar.Clapper
+          - com.github.tchx84.Flatseal
+          - io.github.flattool.Warehouse
+          - io.missioncenter.MissionCenter
+          - io.mpv.Mpv
+          - org.atheme.audacious
           - org.gnome.Loupe
-      - scope: user # Also add Flathub user repo, but no user packages
+          - org.kde.gwenview
+          - org.mozilla.firefox
+      - scope: user
+
+  - type: yafti
+    custom-flatpaks:
+      - Audacity: org.audacityteam.Audacity
+      - Bottles: com.usebottles.bottles
+      - BoxBuddy: io.github.dvlv.boxbuddyrs
+      - Boxes: org.gnome.Boxes
+      - Krita: org.kde.krita
+      - Podman Desktop: io.podman_desktop.PodmanDesktop
+      - Visual Studio Code: com.visualstudio.code
 
   - type: script
     snippets:
       - "systemctl set-default graphical.target"
+
+  - type: bling
+    install:
+      - dconf-update-service
+
+  - type: os-release
+    properties:
+      NAME: "ForgeOS"
+      ID: forgeos
+      ID_LIKE: "fedora"
+      PRETTY_NAME: "ForgeOS"
+      DEFAULT_HOSTNAME: "forgeos"
+      HOME_URL: "https://forgeos.appsmith.uk/"
+      DOCUMENTATION_URL: "https://github.com/arti5an/forge-os"
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
