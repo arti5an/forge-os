@@ -1,85 +1,80 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
 name: forge-os
-# description will be included in the image's metadata
-description: This is my personal OS image.
+description: This is my personal OS image, derived from https://github.com/wayblueorg/wayblue
 
-# the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/base-main
-image-version: 42 # latest is also supported if you want new updates ASAP
+base-image: ghcr.io/wayblueorg/river
+image-version: latest
 
-# module configuration, executed in order
-# you can include multiple instances of the same module
 modules:
-  - type: files
-    files:
-      - source: system
-        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
+  # - type: files
+  #   files:
+  #     - source: system
+  #       destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
-  - type: dnf
-    repos:
-      copr:
-        - atim/starship
-        - ryanabx/cosmic-epoch
-    install:
-      packages:
-        - alsa-sof-firmware
-        - alsa-utils
-        - blueman
-        - cosmic-desktop
-        - distrobox
-        - gvfs
-        - gvfs-mtp
-        - iwl*
-        - kitty
-        - nautilus
-        - pavucontrol
-        - podman
-        - podman-compose
-        - podman-docker
-        - starship
-        - tuned
-        - tuned-ppd
-        - vim
-    remove:
-      packages:
-        - firefox
-        - firefox-langpacks
+  # - type: dnf
+  #   repos:
+  #     copr:
+  #       - atim/starship
+  #       - ryanabx/cosmic-epoch
+  #   install:
+  #     packages:
+  #       - alsa-sof-firmware
+  #       - alsa-utils
+  #       - blueman
+  #       - cosmic-desktop
+  #       - distrobox
+  #       - gvfs
+  #       - gvfs-mtp
+  #       - iwl*
+  #       - kitty
+  #       - nautilus
+  #       - pavucontrol
+  #       - podman
+  #       - podman-compose
+  #       - podman-docker
+  #       - starship
+  #       - tuned
+  #       - tuned-ppd
+  #       - vim
+  #   remove:
+  #     packages:
+  #       - firefox
+  #       - firefox-langpacks
 
-  - type: default-flatpaks
-    configurations:
-      - notify: false
-        scope: system
-        install:
-          - com.github.rafostar.Clapper
-          - com.github.tchx84.Flatseal
-          - io.github.flattool.Warehouse
-          - io.missioncenter.MissionCenter
-          - io.mpv.Mpv
-          - org.atheme.audacious
-          - org.gnome.Loupe
-          - org.kde.gwenview
-          - org.mozilla.firefox
-      - scope: user
+  # - type: default-flatpaks
+  #   configurations:
+  #     - notify: false
+  #       scope: system
+  #       install:
+  #         - com.github.rafostar.Clapper
+  #         - com.github.tchx84.Flatseal
+  #         - io.github.flattool.Warehouse
+  #         - io.missioncenter.MissionCenter
+  #         - io.mpv.Mpv
+  #         - org.atheme.audacious
+  #         - org.gnome.Loupe
+  #         - org.kde.gwenview
+  #         - org.mozilla.firefox
+  #     - scope: user
 
-  - type: yafti
-    custom-flatpaks:
-      - Audacity: org.audacityteam.Audacity
-      - Bottles: com.usebottles.bottles
-      - BoxBuddy: io.github.dvlv.boxbuddyrs
-      - Boxes: org.gnome.Boxes
-      - Krita: org.kde.krita
-      - Podman Desktop: io.podman_desktop.PodmanDesktop
-      - Visual Studio Code: com.visualstudio.code
+  # - type: yafti
+  #   custom-flatpaks:
+  #     - Audacity: org.audacityteam.Audacity
+  #     - Bottles: com.usebottles.bottles
+  #     - BoxBuddy: io.github.dvlv.boxbuddyrs
+  #     - Boxes: org.gnome.Boxes
+  #     - Krita: org.kde.krita
+  #     - Podman Desktop: io.podman_desktop.PodmanDesktop
+  #     - Visual Studio Code: com.visualstudio.code
 
-  - type: script
-    snippets:
-      - "systemctl set-default graphical.target"
+  # - type: script
+  #   snippets:
+  #     - "systemctl set-default graphical.target"
 
-  - type: bling
-    install:
-      - dconf-update-service
+  # - type: bling
+  #   install:
+  #     - dconf-update-service
 
   - type: os-release
     properties:
@@ -91,4 +86,4 @@ modules:
       HOME_URL: "https://forgeos.appsmith.uk/"
       DOCUMENTATION_URL: "https://github.com/arti5an/forge-os"
 
-  - type: signing # this sets up the proper policy & signing files for signed images to work fully
+  - type: signing
