@@ -7,37 +7,23 @@ base-image: ghcr.io/wayblueorg/river
 image-version: latest
 
 modules:
-  # - type: files
-  #   files:
-  #     - source: system
-  #       destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
-
   - type: dnf
     repos:
       copr:
         - atim/starship
-  #       - ryanabx/cosmic-epoch
     install:
       packages:
         - bazaar
-  #       - blueman
-  #       - cosmic-desktop
-  #       - distrobox
-        - fuzzel
-  #       - gvfs
-  #       - gvfs-mtp
-  #       - iwl*
-  #       - kitty
-  #       - nautilus
-  #       - pavucontrol
-  #       - podman
-  #       - podman-compose
-  #       - podman-docker
+        - flac
+        - fscrypt
+        - libffi-devel
+        - openssl-devel
+        - podman-compose
+        - podman-docker
+        - qutebrowser
         - starship
         - tealdeer
-  #       - tuned
-  #       - tuned-ppd
-  #       - vim
+        - tmux
     remove:
       packages:
         - firefox
@@ -45,37 +31,27 @@ modules:
 
   - type: default-flatpaks
     configurations:
-      - notify: false
-        scope: system
+      - scope: system
+        notify: false
         install:
-  #         - com.github.rafostar.Clapper
-  #         - com.github.tchx84.Flatseal
-  #         - io.github.flattool.Warehouse
-  #         - io.missioncenter.MissionCenter
-  #         - io.mpv.Mpv
-  #         - org.atheme.audacious
-  #         - org.gnome.Loupe
-  #         - org.kde.gwenview
+          - com.github.rafostar.Clapper
+          - com.github.tchx84.Flatseal
+          - com.usebottles.bottles
+          - com.visualstudio.code
+          - io.github.dvlv.boxbuddyrs
+          - io.github.flattool.Warehouse
+          - io.missioncenter.MissionCenter
+          - io.mpv.Mpv
+          - io.podman_desktop.PodmanDesktop
+          - org.atheme.audacious
+          - org.audacityteam.Audacity
+          - org.gnome.Boxes
+          - org.gnome.Loupe
+          - org.kde.gwenview
+          - org.kde.krita
           - org.mozilla.firefox
       - scope: user
-
-  # - type: yafti
-  #   custom-flatpaks:
-  #     - Audacity: org.audacityteam.Audacity
-  #     - Bottles: com.usebottles.bottles
-  #     - BoxBuddy: io.github.dvlv.boxbuddyrs
-  #     - Boxes: org.gnome.Boxes
-  #     - Krita: org.kde.krita
-  #     - Podman Desktop: io.podman_desktop.PodmanDesktop
-  #     - Visual Studio Code: com.visualstudio.code
-
-  # - type: script
-  #   snippets:
-  #     - "systemctl set-default graphical.target"
-
-  # - type: bling
-  #   install:
-  #     - dconf-update-service
+        notify: false
 
   - type: os-release
     properties:
