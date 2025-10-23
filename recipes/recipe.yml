@@ -19,8 +19,7 @@ modules:
   #       - ryanabx/cosmic-epoch
     install:
       packages:
-  #       - alsa-sof-firmware
-  #       - alsa-utils
+        - bazaar
   #       - blueman
   #       - cosmic-desktop
   #       - distrobox
@@ -35,6 +34,7 @@ modules:
   #       - podman-compose
   #       - podman-docker
         - starship
+        - tealdeer
   #       - tuned
   #       - tuned-ppd
   #       - vim
