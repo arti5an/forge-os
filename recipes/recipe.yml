@@ -12,18 +12,19 @@ modules:
   #     - source: system
   #       destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
-  # - type: dnf
-  #   repos:
-  #     copr:
-  #       - atim/starship
+  - type: dnf
+    repos:
+      copr:
+        - atim/starship
   #       - ryanabx/cosmic-epoch
-  #   install:
-  #     packages:
+    install:
+      packages:
   #       - alsa-sof-firmware
   #       - alsa-utils
   #       - blueman
   #       - cosmic-desktop
   #       - distrobox
+        - fuzzel
   #       - gvfs
   #       - gvfs-mtp
   #       - iwl*
@@ -33,20 +34,20 @@ modules:
   #       - podman
   #       - podman-compose
   #       - podman-docker
-  #       - starship
+        - starship
   #       - tuned
   #       - tuned-ppd
   #       - vim
-  #   remove:
-  #     packages:
-  #       - firefox
-  #       - firefox-langpacks
+    remove:
+      packages:
+        - firefox
+        - firefox-langpacks
 
-  # - type: default-flatpaks
-  #   configurations:
-  #     - notify: false
-  #       scope: system
-  #       install:
+  - type: default-flatpaks
+    configurations:
+      - notify: false
+        scope: system
+        install:
   #         - com.github.rafostar.Clapper
   #         - com.github.tchx84.Flatseal
   #         - io.github.flattool.Warehouse
@@ -55,8 +56,8 @@ modules:
   #         - org.atheme.audacious
   #         - org.gnome.Loupe
   #         - org.kde.gwenview
-  #         - org.mozilla.firefox
-  #     - scope: user
+          - org.mozilla.firefox
+      - scope: user
 
   # - type: yafti
   #   custom-flatpaks:
