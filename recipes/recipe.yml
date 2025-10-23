@@ -11,6 +11,9 @@ modules:
     repos:
       copr:
         - atim/starship
+    group-install:
+      packages:
+        - development-tools
     install:
       packages:
         - bazaar
