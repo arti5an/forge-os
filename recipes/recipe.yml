@@ -7,55 +7,7 @@ base-image: ghcr.io/wayblueorg/river
 image-version: latest
 
 modules:
-  - type: dnf
-    repos:
-      copr:
-        - atim/starship
-    group-install:
-      packages:
-        - development-tools
-    install:
-      packages:
-        - bazaar
-        - flac
-        - fscrypt
-        - libffi-devel
-        - openssl-devel
-        - podman-compose
-        - podman-docker
-        - qutebrowser
-        - starship
-        - tealdeer
-        - tmux
-    remove:
-      packages:
-        - firefox
-        - firefox-langpacks
-
-  - type: default-flatpaks
-    configurations:
-      - scope: system
-        notify: false
-        install:
-          - com.github.rafostar.Clapper
-          - com.github.tchx84.Flatseal
-          - com.usebottles.bottles
-          - com.visualstudio.code
-          - io.github.dvlv.boxbuddyrs
-          - io.github.flattool.Warehouse
-          - io.missioncenter.MissionCenter
-          - io.mpv.Mpv
-          - io.podman_desktop.PodmanDesktop
-          - org.atheme.audacious
-          - org.audacityteam.Audacity
-          - org.gnome.Boxes
-          - org.gnome.Loupe
-          - org.kde.gwenview
-          - org.kde.krita
-          - org.mozilla.firefox
-      - scope: user
-        notify: false
-
+  # Tag up the OS to distinguish it from wayblue
   - type: os-release
     properties:
       NAME: "ForgeOS"
@@ -66,4 +18,63 @@ modules:
       HOME_URL: "https://forgeos.appsmith.uk/"
       DOCUMENTATION_URL: "https://github.com/arti5an/forge-os"
 
+  # Developer/system/build tooling - shouldn't change much
+  - type: dnf
+    group-install:
+      packages:
+        - development-tools
+    install:
+      packages:
+        - fscrypt
+        - libffi-devel
+        - libyaml-devel
+        - openssl-devel
+        - podman-compose
+        - podman-docker
+
+  # User apps and tools
+  - type: dnf
+    repos:
+      copr:
+        - atim/starship
+    install:
+      packages:
+        - bazaar
+        - flac
+        - qutebrowser
+        - starship
+        - tealdeer
+        - tmux
+    remove:
+      packages:
+        - firefox
+        - firefox-langpacks
+
+  # Flatpaks
+  - type: default-flatpaks
+    configurations:
+      - scope: system
+        notify: false
+        install:
+          - com.github.tchx84.Flatseal
+          - com.usebottles.bottles
+          - io.github.dvlv.boxbuddyrs
+          - io.github.flattool.Warehouse
+          - io.missioncenter.MissionCenter
+          - io.podman_desktop.PodmanDesktop
+          - org.gnome.Boxes
+      - scope: user
+        notify: false
+        install:
+          - com.github.rafostar.Clapper
+          - com.visualstudio.code
+          - io.mpv.Mpv
+          - org.atheme.audacious
+          - org.audacityteam.Audacity
+          - org.gnome.Loupe
+          - org.kde.gwenview
+          - org.kde.krita
+          - org.mozilla.firefox
+
+  # Sign the image
   - type: signing
