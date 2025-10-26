@@ -20,6 +20,7 @@ modules:
         - flac
         - fscrypt
         - libffi-devel
+        - libyaml-devel
         - openssl-devel
         - podman-compose
         - podman-docker
