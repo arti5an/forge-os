@@ -17,8 +17,11 @@ modules:
     install:
       packages:
         - bazaar
+        - chafa
         - flac
         - fscrypt
+        - fuse-sshfs
+        - fuse-zip
         - libffi-devel
         - libyaml-devel
         - openssl-devel
@@ -28,6 +31,7 @@ modules:
         - starship
         - tealdeer
         - tmux
+        - vifm
     remove:
       packages:
         - firefox
